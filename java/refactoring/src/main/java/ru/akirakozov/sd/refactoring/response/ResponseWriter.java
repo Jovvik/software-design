@@ -30,7 +30,7 @@ public class ResponseWriter {
         response.getWriter().println("<h1>" + heading + "</h1>");
     }
 
-    public void println(String line) throws IOException {
+    public void writeln(String line) throws IOException {
         response.getWriter().println(line);
     }
 

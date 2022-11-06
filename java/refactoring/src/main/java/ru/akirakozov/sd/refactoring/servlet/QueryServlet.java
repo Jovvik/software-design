@@ -49,18 +49,18 @@ public class QueryServlet extends HttpServlet {
                 break;
             case "sum":
                 responseWriter.writeHeader();
-                responseWriter.println("Summary price: ");
-                responseWriter.println(String.valueOf(Database.getProductsSum()));
+                responseWriter.writeln("Summary price: ");
+                responseWriter.writeln(String.valueOf(Database.getProductsSum()));
                 responseWriter.writeFooter();
                 break;
             case "count":
                 responseWriter.writeHeader();
-                responseWriter.println("Number of products: ");
-                responseWriter.println(String.valueOf(Database.getProductsCount()));
+                responseWriter.writeln("Number of products: ");
+                responseWriter.writeln(String.valueOf(Database.getProductsCount()));
                 responseWriter.writeFooter();
                 break;
             default:
-                responseWriter.println("Unknown command: " + command);
+                responseWriter.writeln("Unknown command: " + command);
                 break;
         }
 
