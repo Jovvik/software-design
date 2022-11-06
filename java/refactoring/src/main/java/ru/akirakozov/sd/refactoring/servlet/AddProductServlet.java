@@ -19,15 +19,12 @@ public class AddProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         long price = Long.parseLong(request.getParameter("price"));
-        ResponseWriter responseWriter = new ResponseWriter(response);
-
         try {
             Database.addProduct(new Product(name, price));
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
 
-        responseWriter.writeOk();
-        responseWriter.writeln("OK");
+        ResponseWriter.writeln("OK", response);
     }
 }
