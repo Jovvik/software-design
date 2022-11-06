@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import ru.akirakozov.sd.refactoring.database.Product;
 
 import java.io.IOException;
 import java.sql.ResultSet;
@@ -30,24 +31,6 @@ class AddProductServletTest extends TestCommon {
     void setup() throws IOException, SQLException {
         super.setup();
         addProductServlet = new AddProductServlet();
-    }
-
-    private static class Product {
-        private final String name;
-        private final int price;
-
-        public Product(String name, int price) {
-            this.name = name;
-            this.price = price;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public int getPrice() {
-            return price;
-        }
     }
 
     private void assertDbContainsItems(List<Product> products) {
