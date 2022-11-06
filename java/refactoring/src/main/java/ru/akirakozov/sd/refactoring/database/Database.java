@@ -12,11 +12,10 @@ public abstract class Database {
 
     public static void addProduct(Product product) throws SQLException {
         try (Connection c = DriverManager.getConnection(DB_URL)) {
-            // todo: remove possibility of sql injection
-            String sql = String.format("INSERT INTO PRODUCT (NAME, PRICE) VALUES (\"%s\",%d)", product.getName(),
-                    product.getPrice());
-            try (Statement stmt = c.createStatement()){
-                stmt.executeUpdate(sql);
+            try (PreparedStatement stmt = c.prepareStatement("INSERT INTO PRODUCT (NAME, PRICE) VALUES (?, ?)")) {
+                stmt.setString(1, product.getName() == null ? "null" : product.getName());
+                stmt.setLong(2, product.getPrice());
+                stmt.executeUpdate();
             }
         }
     }
