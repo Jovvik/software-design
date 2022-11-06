@@ -75,4 +75,19 @@ class QueryServletTest extends TestCommon {
         queryServlet.doGet(request, response);
         assertBodyEquals("Summary price: \n3");
     }
+
+    @Test
+    void countQueryEmpty() throws IOException {
+        when(request.getParameter("command")).thenReturn("count");
+        queryServlet.doGet(request, response);
+        assertBodyEquals("Number of products: \n0");
+    }
+
+    @Test
+    void countQuery() throws IOException, SQLException {
+        addSampleProducts(2);
+        when(request.getParameter("command")).thenReturn("count");
+        queryServlet.doGet(request, response);
+        assertBodyEquals("Number of products: \n2");
+    }
 }
